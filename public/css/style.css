@@ -1,0 +1,43 @@
+html {
+    background-color: rgb(16, 161, 209);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 5px;
+}
+
+header, footer {
+    width: 100%;
+    border-radius: 15px;
+    background-color: rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+h1 {
+    margin: 5px 0;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+h2 {
+    width: 100%;
+    text-align: center;
+}
