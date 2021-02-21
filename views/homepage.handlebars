@@ -1,6 +1,11 @@
 <h2>Latest Articles</h2>
-{{#each posts}}
-<article>
-    {{> post-preview}}
-</article>
-{{/each}}
+<div class="article-list">
+    {{#each posts}}
+    <a href="read-post/{{id}}">
+        <article>
+            <h3>{{title}}</h3>
+            <div>{{{articlePreview body}}}</div>
+        </article>
+    </a>
+    {{/each}}
+</div>

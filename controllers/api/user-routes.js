@@ -23,11 +23,14 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 	try {
+		console.log(req);
 		const dbUserData = await User.create({
 			username: req.body.username,
 			password: req.body.password,
 			email: req.body.email,
 		});
+
+		console.log(dbUserData);
 
 		req.session.save(() => {
 			req.session.user_id = dbUserData.id;
@@ -78,6 +81,43 @@ router.delete('/:id', withAuth, async (req, res) => {
 		console.log(err);
 		res.status(500).json(err);
 	}
+});
+
+router.post('/login', async (req, res) => {
+	try {
+		const dbUserData = await User.findOne({
+			where: {
+				email: req.body.email,
+			},
+		});
+
+		if (!dbUserData) {
+			res.status(404).json({ message: 'No user with that email address' });
+			return;
+		}
+
+		const validPassword = await dbUserData.checkPassword(req.body.password);
+		if (!validPassword) {
+			res.status(400).json({ message: 'Incorrect password' });
+			return;
+		}
+
+		req.session.save(() => {
+			req.session.user_id = dbUserData.id;
+			req.session.username = dbUserData.username;
+			req.session.loggedIn = true;
+
+			res.json({ user: dbUserData, message: 'Logged in successfully' });
+		});
+	} catch (err) {
+		console.log(err);
+		res.status(500).json(err);
+	}
+});
+
+router.post('/logout', withAuth, async (req, res) => {
+	if (req.session.loggedin) req.session.destroy(() => res.status(204).end());
+	else res.status(404).end();
 });
 
 module.exports = router;
