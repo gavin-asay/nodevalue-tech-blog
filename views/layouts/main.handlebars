@@ -11,11 +11,11 @@
 <body>
     <div class="wrapper">
         <header>
-            <h1>nodeValue Web Dev Blog</h1>
+            <h1><a href="/">nodeValue Web Dev Blog</a></h1>
             <nav>
                 {{#if loggedIn}}
                 <a href="/dashboard">dashboard</a>
-                <button id="logout" class="btn-no-style">logout</button>
+                <button id="logout">logout</button>
                 {{else}}
                 <a href='/login'>login</a>
                 {{/if}}
@@ -30,6 +30,9 @@
         </footer>
 
     </div>
+    {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
 </body>
 
 </html>

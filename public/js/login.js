@@ -13,21 +13,21 @@ async function loginFormHandler(e) {
 			});
 
 			if (!response.ok) {
-				document.querySelector('.error-message').remove();
+				while (document.querySelector('.error-message')) document.querySelector('.error-message').remove();
 				const errorMsg = document.createElement('p');
 				errorMsg.textContent = 'Incorrect email or password. Please try again.';
 				errorMsg.className = 'error-message';
 				document.querySelector('#login').appendChild(errorMsg);
 			} else document.location.replace('/');
 		} catch (err) {
-			document.querySelector('.error-message').remove();
+			while (document.querySelector('.error-message')) document.querySelector('.error-message').remove();
 			const errorMsg = document.createElement('p');
 			errorMsg.textContent = err;
 			errorMsg.className = 'error-message';
 			document.querySelector('#login').appendChild(errorMsg);
 		}
 	} else {
-		document.querySelector('.error-message').remove();
+		while (document.querySelector('.error-message')) document.querySelector('.error-message').remove();
 		const errorMsg = document.createElement('p');
 		errorMsg.textContent = 'Please enter a valid email and password.';
 		errorMsg.className = 'error-message';
@@ -59,14 +59,14 @@ async function registerFormHandler(e) {
 				document.querySelector('#register').appendChild(errorMsg);
 			} else document.location.replace('/');
 		} catch (err) {
-			document.querySelector('.error-message').remove();
+			while (document.querySelector('.error-message')) document.querySelector('.error-message').remove();
 			const errorMsg = document.createElement('p');
 			errorMsg.textContent = err;
 			errorMsg.className = 'error-message';
 			document.querySelector('#register').appendChild(errorMsg);
 		}
 	} else {
-		document.querySelector('.error-message').remove();
+		while (document.querySelector('.error-message')) document.querySelector('.error-message').remove();
 		const errorMsg = document.createElement('p');
 		errorMsg.textContent = 'Please enter a valid username, email, and password.';
 		errorMsg.className = 'error-message';

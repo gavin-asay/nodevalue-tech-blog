@@ -1,7 +1,10 @@
 module.exports = {
 	articlePreview: text => {
-		let preview = text.split(' ').slice(0, 50).join(' ');
-		if (text.split(' ').length > 50) preview += ' ...';
+		// shows only the first 30 words on the homepage to save space
+		let preview = text.split(' ').slice(0, 30).join(' ');
+		if (text.split(' ').length > 30) preview += ' ...';
 		return preview;
 	},
+	format_date: date => `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`,
+	format_time: date => `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}, ${new Date(date).getHours()}:${new Date(date).getMinutes()}`,
 };
