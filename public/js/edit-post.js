@@ -23,7 +23,7 @@ async function deletePost(e) {
 	const response = await fetch(`/api/posts/${id}`, { method: 'DELETE', headers: { 'Content-Type': 'application/json' } });
 
 	if (response.ok) document.location.replace('/dashboard');
-	else alert(response.status, response.statusText);
+	else alert(response.statusText);
 }
 
 document.querySelector('#submit').addEventListener('click', editPost);
