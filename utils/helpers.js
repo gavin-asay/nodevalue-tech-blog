@@ -7,4 +7,6 @@ module.exports = {
 	},
 	format_date: date => `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`,
 	format_time: date => `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}, ${new Date(date).getHours()}:${new Date(date).getMinutes()}`,
+	removeTags: text => text.replace(/<.+?>/g, ''),
+	renderLinebreaks: text => text.replace(/^.+\n|^.+$/gm, match => `<p>${match}</p>`),
 };

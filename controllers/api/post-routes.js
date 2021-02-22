@@ -88,6 +88,7 @@ router.put('/:id', withAuth, async (req, res) => {
 			res.status(404).json({ message: 'No post found with this id' });
 			return;
 		}
+		console.log(dbPostData);
 		res.json(dbPostData);
 	} catch (err) {
 		console.log(err);
@@ -97,7 +98,7 @@ router.put('/:id', withAuth, async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
 	try {
-		const dbPostData = await Post.destroy(req.body, {
+		const dbPostData = await Post.destroy({
 			where: { id: req.params.id },
 		});
 

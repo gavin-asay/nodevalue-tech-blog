@@ -42,11 +42,11 @@ Post.init(
 		modelName: 'post',
 		hooks: {
 			beforeCreate(newPostData) {
-				newPostData.body = sanitizeHtml(marked(newPostData.body));
+				newPostData.body = marked(sanitizeHtml(newPostData.body));
 				return newPostData;
 			},
 			beforeUpdate(updatedPostData) {
-				updatedPostData.body = sanitizeHtml(marked(updatedPostData.body));
+				updatedPostData.body = marked(sanitizeHtml(updatedPostData.body));
 				return updatedPostData;
 			},
 		},

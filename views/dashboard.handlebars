@@ -1,11 +1,14 @@
-<h2>Latest Articles</h2>
+<h2>My Posts</h2>
 <div class="article-list">
     {{#each posts}}
-    <a href="/read-post/{{id}}">
+    <a href="dashboard/edit-post/{{id}}">
         <article>
             <h3>{{title}}</h3>
             <div>{{{articlePreview body}}}</div>
         </article>
     </a>
     {{/each}}
+</div>
+<div class="create">
+    <a href="/dashboard/create-post/" class="btn">Create New Post</a>
 </div>

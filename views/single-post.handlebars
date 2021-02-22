@@ -4,7 +4,7 @@
         <h3>Written by {{post.user.username}} on {{format_date post.created_at}}</h3>
     </div>
     <div class="article-body">
-        {{{post.body}}}
+        {{{renderLinebreaks post.body}}}
     </div>
 </article>
 
@@ -12,8 +12,9 @@
     {{#if loggedIn}}
     <div class="comment-form">
         <h3>Add a Comment</h3>
-        <textarea name="comment-text"></textarea>
-        <button type="submit" id="comment-submit">Submit</button>
+        <p><em>Markdown supported</em></p>
+        <textarea name="comment-text" class="comment-text"></textarea>
+        <button type="submit" id="comment-submit" class="btn">Submit</button>
     </div>
     {{/if}}
     {{#each post.comments as |comment|}}
