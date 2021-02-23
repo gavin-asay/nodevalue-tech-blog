@@ -1,6 +1,6 @@
 async function commentSubmit(e) {
 	e.preventDefault();
-	const comment_text = document.querySelector('textarea[name="comment-text"]').value;
+	let comment_text = document.querySelector('textarea[name="comment-text"]').value;
 
 	if (!comment_text) return;
 
@@ -13,8 +13,10 @@ async function commentSubmit(e) {
 		headers: { 'Content-Type': 'application/json' },
 	});
 
-	if (response.ok) document.location.reload();
-	else alert(response.status, response.statusText);
+	if (response.ok) {
+		comment_text = '';
+		document.location.reload();
+	} else alert(response.statusText);
 }
 
 document.querySelector('#comment-submit').addEventListener('click', commentSubmit);
