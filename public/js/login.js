@@ -41,9 +41,17 @@ async function registerFormHandler(e) {
 	const username = document.querySelector('input[name="username-register"]').value.trim();
 	const email = document.querySelector('input[name="email-register"]').value.trim();
 	const password = document.querySelector('input[name="password-register"]').value.trim();
-	console.log(username, email, password);
 
 	if (username && email && password) {
+		if (password.length < 8) {
+			while (document.querySelector('.error-message')) document.querySelector('.error-message').remove();
+			const errorMsg = document.createElement('p');
+			errorMsg.textContent = 'Password must be at least 8 characters.';
+			errorMsg.className = 'error-message';
+			document.querySelector('#login').appendChild(errorMsg);
+			return;
+		}
+
 		try {
 			const response = await fetch('/api/users/', {
 				method: 'POST',
@@ -51,13 +59,24 @@ async function registerFormHandler(e) {
 				headers: { 'Content-Type': 'application/json' },
 			});
 
-			if (!response.ok) {
-				document.querySelector('.error-message').remove();
-				const errorMsg = document.createElement('p');
-				errorMsg.textContent = 'Account creation failed';
-				errorMsg.className = 'error-message';
-				document.querySelector('#register').appendChild(errorMsg);
-			} else document.location.replace('/');
+			if (response.ok) document.location.replace('/');
+			else {
+				const err = await response.json();
+
+				if (err.errors[0].type === 'unique violation') {
+					while (document.querySelector('.error-message')) document.querySelector('.error-message').remove();
+					const errorMsg = document.createElement('p');
+					errorMsg.textContent = `This ${err.errors[0].path.split('.')[1]} is already in use. Please choose a different ${err.errors[0].path.split('.')[1]}.`;
+					errorMsg.className = 'error-message';
+					document.querySelector('#register').appendChild(errorMsg);
+				} else {
+					while (document.querySelector('.error-message')) document.querySelector('.error-message').remove();
+					const errorMsg = document.createElement('p');
+					errorMsg.textContent = err.errors[0].message;
+					errorMsg.className = 'error-message';
+					document.querySelector('#register').appendChild(errorMsg);
+				}
+			}
 		} catch (err) {
 			while (document.querySelector('.error-message')) document.querySelector('.error-message').remove();
 			const errorMsg = document.createElement('p');

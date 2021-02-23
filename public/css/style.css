@@ -99,12 +99,9 @@ h2, .article-banner h3 {
     justify-content: space-around;
 }
 
-input {
-    display: block;
-}
-
 .error-message {
     color: red;
+    width: 70%;
 }
 
 a {
@@ -129,6 +126,7 @@ input {
     min-width: 320px;
     box-sizing: border-box;
     margin-bottom: 15px;
+    display: block;
 }
 
 .comment {
