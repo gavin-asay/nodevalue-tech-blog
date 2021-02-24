@@ -56,12 +56,12 @@ main {
 }
 
 .article-list a {
-    width: 100%;
-    max-width: 600px;
+    max-width: 100%;
+    width: 590px;
     text-decoration: none;
     display: block;
     margin: 4px;
-    height: min-content;
+    min-height: 196px;
 }
 
 .article-list article {
@@ -70,6 +70,7 @@ main {
     padding: 15px;
     margin: 5px 0;
     color: white;
+    height: 196px;
 }
 
 .article-banner, .comment-wrapper {
