@@ -53,6 +53,8 @@ main {
 .article-list {
     display: flex;
     justify-content: space-between;
+    min-width: 100%;
+    flex-wrap: wrap;
 }
 
 .article-list a {
